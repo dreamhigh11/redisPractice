@@ -1,0 +1,7 @@
+version: '3'
+services:
+  redis:
+    container_name: redis2
+    image: redis:latest
+    ports:
+      - "8088:6379"
