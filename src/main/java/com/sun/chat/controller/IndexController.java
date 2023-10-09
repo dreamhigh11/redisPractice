@@ -14,16 +14,16 @@ public class IndexController {
     @Autowired
     private RedisTemplate redisTemplate;
     @GetMapping("/index")
-    public void index(){
+    public String index(Model model){
 
         redisTemplate.convertAndSend("messageQueue","sun Handsome!");
 
-        //return redisTemplate.opsForValue().get("user").toString();
+        return "index";
     }
 
     @GetMapping("/main")
     public String main(Model model) {
-        model.addAttribute("message", RedisMessageSubscriber.messageList.get(0));
+        model.addAttribute("message", RedisMessageSubscriber.messageList.size()==0?"no message":RedisMessageSubscriber.messageList.get(0));
 
 
         return "main"; //view
